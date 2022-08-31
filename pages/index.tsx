@@ -1,22 +1,36 @@
 import type { NextPage } from "next";
+import { useCallback } from "react";
+
+import FileDropzone from "../components/file-fropzone";
+import { csvToJson } from "../lib/csvToJson";
+import { Transaction } from "../types/tomorrow";
 
 const Home: NextPage = () => {
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    const convertedFiles = await Promise.all(
+      acceptedFiles.map(csvToJson<Transaction>)
+    );
+    console.log({ convertedFiles });
+  }, []);
+
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <header className="">
         <div className="navbar bg-base-100">
           <a className="btn btn-ghost text-xl normal-case">Tomorrow Insights</a>
         </div>
       </header>
-      <main>
-        <div className="hero min-h-screen bg-base-200">
+      <main className="flex grow">
+        <div className=" hero grow bg-base-200 py-32">
           <div className="hero-content text-center">
             <div className="max-w-md">
               <h1 className="text-5xl font-bold">Hello there</h1>
               <p className="py-6">
                 With this tool you can have insights to your expenses
               </p>
-              <button className="btn btn-primary">Select File</button>
+              <form>
+                <FileDropzone onDrop={onDrop} />
+              </form>
             </div>
           </div>
         </div>
@@ -72,7 +86,7 @@ const Home: NextPage = () => {
           </a>
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 
