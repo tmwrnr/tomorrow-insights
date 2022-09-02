@@ -40,3 +40,11 @@ export const formatPercent = (percent: number, absolute = false): string => {
   const rounded = round(absolute ? Math.abs(percent * 100) : percent * 100, 2);
   return formatDecimal(rounded) + " %";
 };
+
+const DateFormatter = new Intl.DateTimeFormat("de-DE", {
+  day: "2-digit",
+  month: "long",
+});
+
+export const formatDateString = (date: string): string =>
+  DateFormatter.format(new Date(date));

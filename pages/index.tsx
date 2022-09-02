@@ -1,46 +1,61 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 import FileDropzone from "../components/FileDropzone";
-import { csvToJson } from "../lib/csvToJson";
-import { Transaction } from "../types/tomorrow";
+import Header from "../components/Header";
+import Month from "../components/Month";
+import { getTransactionsPerMonth, prepareData } from "../helpers/transaction";
+import { Month as MonthType } from "../types/month";
+import { Transaction } from "../types/transaction";
 
 const Home: NextPage = () => {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [months, setMonths] = useState<MonthType[]>([]);
+
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    const convertedFiles = await Promise.all(
-      acceptedFiles.map(csvToJson<Transaction>)
-    );
-    // TODO validate schema
-    // TODO save in state
+    const transactions = await prepareData(acceptedFiles);
+    const months = getTransactionsPerMonth(transactions);
+
+    setTransactions(transactions);
+    setMonths(months);
   }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50 text-gray-700">
+      {transactions.length > 0 && <Header />}
       <main className="flex grow flex-col ">
-        <div className=" container mx-auto flex grow flex-col items-center justify-center  py-32">
-          <div className="max-w-md text-center">
-            <h1 className="text-5xl font-bold">Tomorrow Insights</h1>
-            <p className="py-6">
-              Mit diesem Tool kann man sich einfach die Insights seines{" "}
-              <a
-                href="https://www.tomorrow.one/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-violet-500 hover:underline"
-              >
-                Tomorrow
-              </a>{" "}
-              Kontos anschauen.
-            </p>
+        {months.length > 0 ? (
+          <ul className=" container mx-auto mt-10 max-w-3xl space-y-10 px-10 pb-10">
+            {months.map((month) => (
+              <Month month={month} key={month.key} />
+            ))}
+          </ul>
+        ) : (
+          <div className=" container mx-auto flex grow flex-col items-center justify-center  py-32">
+            <div className="max-w-md text-center">
+              <h1 className="text-5xl font-bold">Tomorrow Insights</h1>
+              <p className="py-6">
+                Mit diesem Tool kann man sich einfach die Insights seines{" "}
+                <a
+                  href="https://www.tomorrow.one/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-violet-500 hover:underline"
+                >
+                  Tomorrow
+                </a>{" "}
+                Kontos anschauen.
+              </p>
 
-            <FileDropzone onDrop={onDrop} />
-            <p className="py-6 text-xs text-gray-500">
-              Alle Daten bleiben auf dem Gerät! <br />
-              Es werden keine Daten an irgendeinen Server gesendet!
-            </p>
+              <FileDropzone onDrop={onDrop} />
+              <p className="py-6 text-xs text-gray-500">
+                Alle Daten bleiben auf dem Gerät! <br />
+                Es werden keine Daten an irgendeinen Server gesendet!
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </main>
       <footer className=" bg-violet-500 p-4 text-violet-50">
         <div className="flex justify-center">

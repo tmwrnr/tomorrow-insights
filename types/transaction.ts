@@ -25,7 +25,7 @@ export type Category =
   | "Versicherung"
   | "Überweisung";
 
-export type Transaction = {
+export type TransactionImport = {
   account_type: AccountType;
   amount: string; // "1.200"
   booking_date: string; // "2022-08-02"
@@ -37,4 +37,19 @@ export type Transaction = {
   iban: string;
   sender_or_recipient: string;
   valuta_date: string; // "2022-08-02"
+};
+
+export type Transaction = {
+  id: string;
+  accountType: AccountType;
+  amount: number;
+  bookingDate: string;
+  bookingType: BookingType;
+  category: Category;
+  co2FootprintInGrams: string;
+  currency: string;
+  description: string;
+  iban: string;
+  senderOrRecipient: string;
+  valutaDate: string;
 };
