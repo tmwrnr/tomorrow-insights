@@ -17,8 +17,8 @@ const FileDropzone: React.FC<Props> = ({ onDrop }) => {
       {...getRootProps()}
       className={clsx(
         {
-          "border-primary-focus bg-primary": isDragActive,
-          "border-primary": !isDragActive,
+          "border-violet-400 bg-violet-200": isDragActive,
+          "border-violet-400 bg-violet-50": !isDragActive,
         },
         "flex justify-center rounded-md border-2 border-dashed px-6 pt-10 pb-12"
       )}
@@ -29,15 +29,15 @@ const FileDropzone: React.FC<Props> = ({ onDrop }) => {
         <div className=" flex text-sm">
           <span
             className={clsx("link", {
-              "text-primary": !isDragActive,
-              "text-primary-content": isDragActive,
+              "text-violet-600": !isDragActive,
+              "text-violet-500": isDragActive,
             })}
           >
             Select a file
           </span>
           <p className="pl-1">or drag and drop</p>
         </div>
-        <p className="text-xs text-neutral">only CSV files</p>
+        <p className="text-xs text-gray-600">only CSV files</p>
       </div>
     </div>
   );
