@@ -15,8 +15,8 @@ type Props = {
 const Month: React.FC<Props> = ({ month }) => {
   return (
     <li key={month.key}>
-      <div className="mb-2 flex items-baseline">
-        <h2 className="mr-3 text-2xl ">{month.name}</h2>
+      <div className="mb-2 flex flex-wrap items-baseline space-y-1">
+        <h2 className="mr-3 w-full text-2xl md:w-auto">{month.name}</h2>
         <div className="mr-2 flex items-center rounded-full border border-green-500 bg-green-50 px-2 py-1 text-xs text-green-500">
           <ArrowDownTrayIcon className="mr-2 h-4 w-4" />
           {formatEuro(month.income)}
@@ -27,7 +27,7 @@ const Month: React.FC<Props> = ({ month }) => {
         </div>
       </div>
 
-      <ul className="grid grid-cols-2 gap-x-8 gap-y-4 rounded-lg bg-white p-4 shadow-md ">
+      <ul className="grid gap-x-8 gap-y-4 rounded-lg bg-white p-4 shadow-md md:grid-cols-2 ">
         {month.categories.map((c) => (
           <li key={c.name} className="flex items-center space-x-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-50 text-violet-500">
@@ -53,7 +53,7 @@ const Month: React.FC<Props> = ({ month }) => {
         <Disclosure.Button className="w-full py-2 text-center text-violet-500">
           Einträge anzeigen
         </Disclosure.Button>
-        <Disclosure.Panel className="px-20">
+        <Disclosure.Panel className="md:px-20">
           <ul className="space-y-5">
             {month.transactions.map((t) => (
               <li

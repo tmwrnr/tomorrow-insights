@@ -32,7 +32,7 @@ const Home: NextPage = () => {
             ))}
           </ul>
         ) : (
-          <div className=" container mx-auto flex grow flex-col items-center justify-center  py-32">
+          <div className=" container mx-auto flex grow flex-col items-center justify-center px-12 py-8 md:py-32">
             <div className="max-w-md text-center">
               <h1 className="text-5xl font-bold">Tomorrow Insights</h1>
               <p className="py-6">
@@ -57,34 +57,43 @@ const Home: NextPage = () => {
           </div>
         )}
       </main>
-      <footer className=" bg-violet-500 p-4 text-violet-50">
-        <div className="flex justify-center">
-          <a
-            href="https://github.com/tmwr"
-            target="_blank"
-            rel="noreferrer"
-            className="flex flex-col items-center rounded-lg p-2 hover:bg-violet-400 hover:text-white"
-          >
-            <Image
-              layout="fixed"
-              src="https://avatars.githubusercontent.com/u/39673874?s=40&v=4"
-              alt="Profile image"
-              width="40px"
-              height="40px"
-              className="h-10 w-10 rounded-full"
-            />
-            <span className="mt-1 text-sm">Tim Werner</span>
-          </a>
-        </div>
-        <div className="text-center">
-          <a
-            href="https://github.com/tmwrnr/tomorrow-insights"
-            target="_blank"
-            rel="noreferrer"
-            className="text-xs hover:text-white hover:underline"
-          >
-            Open Source
-          </a>
+      <footer className="lg:-mt-20">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#8B5CF6"
+            fillOpacity="1"
+            d="M0,64L48,101.3C96,139,192,213,288,213.3C384,213,480,139,576,133.3C672,128,768,192,864,208C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+        <div className="  bg-violet-500 p-4 text-violet-50 lg:-mt-20">
+          <div className="flex justify-center">
+            <a
+              href="https://github.com/tmwr"
+              target="_blank"
+              rel="noreferrer"
+              className="flex flex-col items-center rounded-lg p-2 hover:bg-violet-400 hover:text-white"
+            >
+              <Image
+                layout="fixed"
+                src="https://avatars.githubusercontent.com/u/39673874?s=40&v=4"
+                alt="Profile image"
+                width="40px"
+                height="40px"
+                className="h-10 w-10 rounded-full"
+              />
+              <span className="mt-1 text-sm">Tim Werner</span>
+            </a>
+          </div>
+          <div className="text-center">
+            <a
+              href="https://github.com/tmwrnr/tomorrow-insights"
+              target="_blank"
+              rel="noreferrer"
+              className="text-xs hover:text-white hover:underline"
+            >
+              Open Source
+            </a>
+          </div>
         </div>
       </footer>
     </div>

@@ -26,18 +26,18 @@ const FileDropzone: React.FC<Props> = ({ onDrop }) => {
       <input {...getInputProps()} className="sr-only" />
       <div className="space-y-1 text-center">
         <DocumentChartBarIcon className="mx-auto mb-4 h-10 w-10" />
-        <div className=" flex text-sm">
+        <div className=" flex flex-col text-sm md:flex-row">
           <span
             className={clsx("link", {
               "text-violet-600": !isDragActive,
               "text-violet-500": isDragActive,
             })}
           >
-            Select a file
+            Datei auswählen
           </span>
-          <p className="pl-1">or drag and drop</p>
+          <span className="pl-1">oder per drag & drop</span>
         </div>
-        <p className="text-xs text-gray-600">only CSV files</p>
+        <p className="text-xs text-gray-600">nur CSV Dateien</p>
       </div>
     </div>
   );
