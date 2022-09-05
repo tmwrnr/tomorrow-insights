@@ -58,14 +58,18 @@ const Home: NextPage = () => {
         )}
       </main>
       <footer className="lg:-mt-20">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          viewBox="0 0 1440 320"
+        >
           <path
             fill="#8B5CF6"
             fillOpacity="1"
             d="M0,64L48,101.3C96,139,192,213,288,213.3C384,213,480,139,576,133.3C672,128,768,192,864,208C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           ></path>
         </svg>
-        <div className="  bg-violet-500 p-4 text-violet-50 lg:-mt-20">
+        <div className="bg-violet-500 p-4 text-violet-50 lg:-mt-20">
           <div className="flex justify-center">
             <a
               href="https://github.com/tmwr"

@@ -1,7 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import React, { Fragment, PropsWithChildren } from "react";
+import React, { Fragment } from "react";
 
 export const SortOptions = [
   {
@@ -33,6 +33,7 @@ const SortButton: React.FC<Props> = ({ onChange, sorting }) => {
   return (
     <Menu as="div" className="relative z-10 inline-block text-left">
       <Menu.Button className="inline-flex w-full items-center justify-center rounded p-1 text-sm font-medium text-violet-500 hover:ring-2 hover:ring-violet-500 focus:outline-none focus:ring-opacity-75 focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-opacity-75">
+        <span className="sr-only">Sortieren nach</span>
         {label}
         <ChevronUpDownIcon
           className="ml-1 h-4 w-4 text-violet-400"
@@ -70,23 +71,6 @@ const SortButton: React.FC<Props> = ({ onChange, sorting }) => {
         </Menu.Items>
       </Transition>
     </Menu>
-  );
-};
-
-type MenuButtonProps = PropsWithChildren & {
-  active: boolean;
-  label: string;
-  icon: any;
-};
-const MenuButton: React.FC<MenuButtonProps> = ({ label, icon, active }) => {
-  return (
-    <button
-      className={`${
-        active ? "bg-violet-500 text-white" : "text-gray-900"
-      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-    >
-      {label}
-    </button>
   );
 };
 

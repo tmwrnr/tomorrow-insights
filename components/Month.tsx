@@ -59,11 +59,13 @@ const Month: React.FC<Props> = ({ month }) => {
       <div className="mb-2 flex flex-wrap items-baseline space-y-1">
         <h2 className="mr-3 w-full text-2xl md:w-auto">{month.name}</h2>
         <div className="mr-2 flex items-center rounded-full border border-green-500 bg-green-50 px-2 py-1 text-xs text-green-500">
-          <ArrowDownTrayIcon className="mr-2 h-4 w-4" />
+          <ArrowDownTrayIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+          <span className="sr-only">Einnahmen</span>
           {formatEuro(month.income)}
         </div>
         <div className="flex items-center rounded-full border border-red-500 bg-red-50 px-2 py-1 text-xs text-red-500">
-          <ArrowUpTrayIcon className="mr-2 h-4 w-4" />
+          <ArrowUpTrayIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+          <span className="sr-only">Ausgaben</span>
           {formatEuro(month.expenses)}
         </div>
       </div>
@@ -77,6 +79,7 @@ const Month: React.FC<Props> = ({ month }) => {
                 { "bg-violet-100": c.name === selectedCategory }
               )}
               onClick={() => handleCategoryClick(c.name)}
+              aria-label={`Zeige nur Transaktionen der Kategorie ${c.name} an`}
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-50 text-violet-500">
                 <CategoryIcon category={c.name} className="h-6 w-6" />
@@ -84,12 +87,16 @@ const Month: React.FC<Props> = ({ month }) => {
               <div className="grow text-left">
                 <div className="font-semibold">{c.name}</div>
                 <div className="text-sm text-gray-400">
-                  {c.transactions.length} Transactions
+                  {c.transactions.length} Transaktionen
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-semibold">{formatEuro(c.sum, true)}</div>
+                <div className="text-semibold">
+                  <span className="sr-only">Summe der Ausgaben</span>
+                  {formatEuro(c.sum, true)}
+                </div>
                 <div className="text-sm text-gray-400">
+                  <span className="sr-only">Prozentualer Anteil</span>
                   {formatPercent(c.expensesPercent, true)}
                 </div>
               </div>
@@ -100,15 +107,19 @@ const Month: React.FC<Props> = ({ month }) => {
 
       <div ref={parent}>
         <Disclosure>
-          <Disclosure.Button className="w-full py-2 text-center text-violet-500 hover:underline focus:outline-none focus-visible:underline">
-            Einträge anzeigen
-          </Disclosure.Button>
-          <Disclosure.Panel className="md:px-20">
-            <div className="my-1 flex justify-end">
-              <SortButton sorting={sorting} onChange={setSorting} />
-            </div>
-            <TransactionList transactions={sortedTransactions} />
-          </Disclosure.Panel>
+          {({ open }) => (
+            <>
+              <Disclosure.Button className="w-full py-2 text-center text-violet-500 hover:underline focus:outline-none focus-visible:underline">
+                Transaktionen {open ? "ausblenden" : "anzeigen"}
+              </Disclosure.Button>
+              <Disclosure.Panel className="md:px-20">
+                <div className="my-1 flex justify-end">
+                  <SortButton sorting={sorting} onChange={setSorting} />
+                </div>
+                <TransactionList transactions={sortedTransactions} />
+              </Disclosure.Panel>
+            </>
+          )}
         </Disclosure>
       </div>
     </li>

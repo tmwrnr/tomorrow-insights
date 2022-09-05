@@ -25,7 +25,10 @@ const FileDropzone: React.FC<Props> = ({ onDrop }) => {
     >
       <input {...getInputProps()} className="sr-only" />
       <div className="space-y-1 text-center">
-        <DocumentChartBarIcon className="mx-auto mb-4 h-10 w-10" />
+        <DocumentChartBarIcon
+          className="mx-auto mb-4 h-10 w-10"
+          aria-hidden="true"
+        />
         <div className=" flex flex-col text-sm md:flex-row">
           <span
             className={clsx("link", {
