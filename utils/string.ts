@@ -48,3 +48,16 @@ const DateFormatter = new Intl.DateTimeFormat("de-DE", {
 
 export const formatDateString = (date: string): string =>
   DateFormatter.format(new Date(date));
+
+const MassUnitFormatter = new Intl.NumberFormat("de-DE", {
+  maximumFractionDigits: 2,
+});
+export const formatMassUnit = (gramm: number) => {
+  if (gramm < 1000) {
+    return gramm + " g";
+  }
+  if (gramm < 1000_000) {
+    return MassUnitFormatter.format(round(gramm / 1000, 1)) + " kg";
+  }
+  return MassUnitFormatter.format(gramm / 1000_000) + " t";
+};

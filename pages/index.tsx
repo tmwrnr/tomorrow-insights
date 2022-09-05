@@ -26,7 +26,7 @@ const Home: NextPage = () => {
       {transactions.length > 0 && <Header />}
       <main className="flex grow flex-col ">
         {months.length > 0 ? (
-          <ul className=" container mx-auto mt-10 max-w-3xl space-y-10 px-10 pb-10">
+          <ul className="container mx-auto mt-10 max-w-4xl space-y-10 px-10 pb-10">
             {months.map((month) => (
               <Month month={month} key={month.key} />
             ))}

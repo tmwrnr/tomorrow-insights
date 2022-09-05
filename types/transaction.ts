@@ -46,7 +46,7 @@ export type Transaction = {
   bookingDate: string;
   bookingType: BookingType;
   category: Category;
-  co2FootprintInGrams: string;
+  co2FootprintInGrams: number;
   currency: string;
   description: string;
   iban: string;

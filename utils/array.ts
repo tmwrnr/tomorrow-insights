@@ -89,6 +89,24 @@ export function compare<T extends {}>(
   return 0;
 }
 
+type Value = number | string | Date;
+/**
+ * Compare value for sorting
+ */
+export function compareValue<T extends Value>(
+  firstValue: T,
+  secondValue: T,
+  direction: "asc" | "desc" = "asc"
+): -1 | 0 | 1 {
+  if (firstValue < secondValue) {
+    return direction === "asc" ? -1 : 1;
+  }
+  if (firstValue > secondValue) {
+    return direction === "asc" ? 1 : -1;
+  }
+  return 0;
+}
+
 /**
  * Chunk an array into smaller arrays
  * @param array Array to chunk

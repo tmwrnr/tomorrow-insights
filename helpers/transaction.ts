@@ -104,7 +104,7 @@ function transactionFactory(transaction: TransactionImport): Transaction {
     bookingDate: transaction.booking_date,
     bookingType: transaction.booking_type,
     category: transaction.category,
-    co2FootprintInGrams: transaction.co2_footprint_in_grams,
+    co2FootprintInGrams: euroStringToNumber(transaction.co2_footprint_in_grams),
     currency: transaction.currency,
     description: transaction.description,
     iban: transaction.iban,

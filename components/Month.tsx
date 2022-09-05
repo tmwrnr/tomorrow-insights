@@ -1,18 +1,59 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Disclosure } from "@headlessui/react";
 import {
   ArrowDownTrayIcon,
   ArrowUpTrayIcon,
 } from "@heroicons/react/24/outline";
-import React from "react";
+import clsx from "clsx";
+import React, { useState } from "react";
 
 import { Month as MonthType } from "../types/month";
-import { formatDateString, formatEuro, formatPercent } from "../utils/string";
+import { Category } from "../types/transaction";
+import { compare, compareValue } from "../utils/array";
+import { formatEuro, formatPercent } from "../utils/string";
 import CategoryIcon from "./CategoryIcon";
+import SortButton, { SortOptions } from "./SortButton";
+import TransactionList from "./TransactionList";
 
 type Props = {
   month: MonthType;
 };
 const Month: React.FC<Props> = ({ month }) => {
+  const [parent] = useAutoAnimate<HTMLDivElement>(/* optional config */);
+  const [selectedCategory, setSelectedCategory] = useState<
+    Category | undefined
+  >(undefined);
+  const [sorting, setSorting] = useState<typeof SortOptions[number]>(
+    SortOptions[0]
+  );
+
+  const handleCategoryClick = (category: Category) => {
+    setSelectedCategory((prev) => (prev !== category ? category : undefined));
+    // TODO Show transactions if hidden
+  };
+
+  // TODO remove selectedCategory if transaction are hidden
+
+  const filteredTransactions = selectedCategory
+    ? month.transactions.filter((t) => t.category === selectedCategory)
+    : month.transactions;
+
+  const sortedTransactions = filteredTransactions.sort((a, b) => {
+    switch (sorting.value) {
+      case "date":
+        return compare(a, b, "bookingDate", "desc");
+      case "name":
+        return compareValue(
+          a.senderOrRecipient || a.description,
+          b.senderOrRecipient || b.description
+        );
+      case "amount":
+        return compareValue(Math.abs(a.amount), Math.abs(b.amount), "desc");
+      case "co2":
+        return compare(a, b, "co2FootprintInGrams", "desc");
+    }
+  });
+
   return (
     <li key={month.key}>
       <div className="mb-2 flex flex-wrap items-baseline space-y-1">
@@ -27,56 +68,49 @@ const Month: React.FC<Props> = ({ month }) => {
         </div>
       </div>
 
-      <ul className="grid gap-x-8 gap-y-4 rounded-lg bg-white p-4 shadow-md md:grid-cols-2 ">
+      <ul className="grid gap-x-6 gap-y-2 rounded-lg bg-white p-3 shadow-md md:grid-cols-2 ">
         {month.categories.map((c) => (
-          <li key={c.name} className="flex items-center space-x-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-50 text-violet-500">
-              <CategoryIcon category={c.name} className="h-6 w-6" />
-            </div>
-            <div className="grow">
-              <div className="font-semibold">{c.name}</div>
-              <div className="text-sm text-gray-400">
-                {c.transactions.length} Transactions
+          <li key={c.name} className="">
+            <button
+              className={clsx(
+                "flex w-full items-center  space-x-3 rounded py-1 px-2 hover:bg-violet-100 focus:outline-violet-500 focus-visible:bg-violet-100",
+                { "bg-violet-100": c.name === selectedCategory }
+              )}
+              onClick={() => handleCategoryClick(c.name)}
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-50 text-violet-500">
+                <CategoryIcon category={c.name} className="h-6 w-6" />
               </div>
-            </div>
-            <div className="text-right">
-              <div className="text-semibold">{formatEuro(c.sum, true)}</div>
-              <div className="text-sm text-gray-400">
-                {formatPercent(c.expensesPercent, true)}
+              <div className="grow text-left">
+                <div className="font-semibold">{c.name}</div>
+                <div className="text-sm text-gray-400">
+                  {c.transactions.length} Transactions
+                </div>
               </div>
-            </div>
+              <div className="text-right">
+                <div className="text-semibold">{formatEuro(c.sum, true)}</div>
+                <div className="text-sm text-gray-400">
+                  {formatPercent(c.expensesPercent, true)}
+                </div>
+              </div>
+            </button>
           </li>
         ))}
       </ul>
 
-      <Disclosure>
-        <Disclosure.Button className="w-full py-2 text-center text-violet-500">
-          Einträge anzeigen
-        </Disclosure.Button>
-        <Disclosure.Panel className="md:px-20">
-          <ul className="space-y-5">
-            {month.transactions.map((t) => (
-              <li
-                key={t.id}
-                className="flex items-center space-x-3 px-2 py-1 hover:rounded hover:bg-violet-100"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-50 text-violet-500">
-                  <CategoryIcon category={t.category} className="h-6 w-6" />
-                </div>
-                <div className="grow">
-                  <div className="font-semibold">
-                    {t.senderOrRecipient || t.description}
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    {formatDateString(t.bookingDate)}
-                  </div>
-                </div>
-                <div>{formatEuro(t.amount)}</div>
-              </li>
-            ))}
-          </ul>
-        </Disclosure.Panel>
-      </Disclosure>
+      <div ref={parent}>
+        <Disclosure>
+          <Disclosure.Button className="w-full py-2 text-center text-violet-500 hover:underline focus:outline-none focus-visible:underline">
+            Einträge anzeigen
+          </Disclosure.Button>
+          <Disclosure.Panel className="md:px-20">
+            <div className="my-1 flex justify-end">
+              <SortButton sorting={sorting} onChange={setSorting} />
+            </div>
+            <TransactionList transactions={sortedTransactions} />
+          </Disclosure.Panel>
+        </Disclosure>
+      </div>
     </li>
   );
 };
