@@ -74,6 +74,60 @@ export const getTransactionsPerMonth = (
   return months;
 };
 
+const getAverage = (numbers: number[], months: number) =>
+  numbers.reduce((sum, n) => sum + n, 0) / months;
+
+export const getAverageMonth = (months: Month[]): Month | undefined => {
+  if (months.length < 2) {
+    return undefined;
+  }
+
+  const expenses = getAverage(
+    months.map((m) => m.expenses),
+    months.length
+  );
+  const income = getAverage(
+    months.map((m) => m.income),
+    months.length
+  );
+
+  const categoriesMap = groupBy(months.map((m) => m.categories).flat(), "name");
+  const categories: Month["categories"] = Object.entries(categoriesMap)
+    .map(([category, categories]) => {
+      const sum = getAverage(
+        categories.map((c) => c.sum),
+        months.length
+      );
+      const expensesPercent = getAverage(
+        categories.map((c) => c.expensesPercent),
+        months.length
+      );
+      const allTransactions: Transaction[] = categories
+        .map((c) => c.transactions)
+        .flat();
+      const averageTransactionsSize = Math.ceil(
+        allTransactions.length / months.length
+      );
+      const transactions = allTransactions.slice(0, averageTransactionsSize);
+      return {
+        sum,
+        expensesPercent,
+        name: category as Category,
+        transactions, // Only for displaying the average size of transactions a month
+      };
+    })
+    .sort((a, b) => compare(a, b, "sum", "desc"));
+
+  return {
+    expenses,
+    income,
+    categories,
+    key: "overview",
+    name: "Durchschnitt",
+    transactions: [],
+  };
+};
+
 const mandatoryKeys: (keyof TransactionImport)[] = [
   "account_type",
   "amount",

@@ -2,17 +2,25 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useCallback, useState } from "react";
+import Card from "../components/Card";
+import CardHeadline from "../components/CardHeadline";
+import CardItem from "../components/CardItem";
 
 import FileDropzone from "../components/FileDropzone";
 import Header from "../components/Header";
 import Month from "../components/Month";
-import { getTransactionsPerMonth, prepareData } from "../helpers/transaction";
+import {
+  getAverageMonth,
+  getTransactionsPerMonth,
+  prepareData,
+} from "../helpers/transaction";
 import { Month as MonthType } from "../types/month";
 import { Transaction } from "../types/transaction";
 
 const Home: NextPage = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [months, setMonths] = useState<MonthType[]>([]);
+  const [average, setAverage] = useState<MonthType | undefined>(undefined);
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     const transactions = await prepareData(acceptedFiles);
@@ -20,6 +28,7 @@ const Home: NextPage = () => {
 
     setTransactions(transactions);
     setMonths(months);
+    setAverage(getAverageMonth(months));
   }, []);
 
   return (
@@ -66,6 +75,27 @@ const Home: NextPage = () => {
         <main className="flex grow flex-col ">
           {months.length > 0 ? (
             <ul className="container mx-auto mt-10 max-w-4xl space-y-10 px-10 pb-10">
+              {average && (
+                <li>
+                  <CardHeadline
+                    text={average.name}
+                    income={average.income}
+                    expenses={average.expenses}
+                  />
+                  <Card>
+                    {average.categories.map((c) => (
+                      <CardItem
+                        key={c.name}
+                        name={c.name}
+                        selected={false}
+                        transactions={c.transactions.length}
+                        sum={c.sum}
+                        expensesPercent={c.expensesPercent}
+                      />
+                    ))}
+                  </Card>
+                </li>
+              )}
               {months.map((month) => (
                 <Month month={month} key={month.key} />
               ))}
