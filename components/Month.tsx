@@ -1,17 +1,13 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Disclosure } from "@headlessui/react";
-import {
-  ArrowDownTrayIcon,
-  ArrowUpTrayIcon,
-} from "@heroicons/react/24/outline";
-import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { Month as MonthType } from "../types/month";
 import { Category } from "../types/transaction";
 import { compare, compareValue } from "../utils/array";
-import { formatEuro, formatPercent } from "../utils/string";
-import CategoryIcon from "./CategoryIcon";
+import Card from "./Card";
+import CardHeadline from "./CardHeadline";
+import CardItem from "./CardItem";
 import SortButton, { SortOptions } from "./SortButton";
 import TransactionList from "./TransactionList";
 
@@ -27,9 +23,9 @@ const Month: React.FC<Props> = ({ month }) => {
     SortOptions[0]
   );
 
-  const handleCategoryClick = (category: Category) => {
+  const handleCategoryClick = useCallback((category: Category) => {
     setSelectedCategory((prev) => (prev !== category ? category : undefined));
-  };
+  }, []);
 
   const filteredTransactions = selectedCategory
     ? month.transactions.filter((t) => t.category === selectedCategory)
@@ -53,54 +49,25 @@ const Month: React.FC<Props> = ({ month }) => {
 
   return (
     <li key={month.key}>
-      <div className="mb-2 flex flex-wrap items-baseline space-y-1">
-        <h2 className="mr-3 w-full text-2xl md:w-auto">{month.name}</h2>
-        <div className="mr-2 flex items-center rounded-full border border-green-500 bg-green-50 px-2 py-1 text-xs text-green-500">
-          <ArrowDownTrayIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-          <span className="sr-only">Einnahmen</span>
-          {formatEuro(month.income)}
-        </div>
-        <div className="flex items-center rounded-full border border-red-500 bg-red-50 px-2 py-1 text-xs text-red-500">
-          <ArrowUpTrayIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-          <span className="sr-only">Ausgaben</span>
-          {formatEuro(month.expenses)}
-        </div>
-      </div>
+      <CardHeadline
+        text={month.name}
+        income={month.income}
+        expenses={month.expenses}
+      />
 
-      <ul className="grid gap-x-6 gap-y-2 rounded-lg bg-white p-3 shadow-md md:grid-cols-2 ">
+      <Card>
         {month.categories.map((c) => (
-          <li key={c.name} className="">
-            <button
-              className={clsx(
-                "flex w-full items-center  space-x-3 rounded py-1 px-2 hover:bg-violet-100 focus:outline-violet-500 focus-visible:bg-violet-100",
-                { "bg-violet-100": c.name === selectedCategory }
-              )}
-              onClick={() => handleCategoryClick(c.name)}
-              aria-label={`Zeige nur Transaktionen der Kategorie ${c.name} an`}
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-50 text-violet-500">
-                <CategoryIcon category={c.name} className="h-6 w-6" />
-              </div>
-              <div className="grow text-left">
-                <div className="font-semibold">{c.name}</div>
-                <div className="text-sm text-gray-400">
-                  {c.transactions.length} Transaktionen
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-semibold">
-                  <span className="sr-only">Summe der Ausgaben</span>
-                  {formatEuro(c.sum, true)}
-                </div>
-                <div className="text-sm text-gray-400">
-                  <span className="sr-only">Prozentualer Anteil</span>
-                  {formatPercent(c.expensesPercent, true)}
-                </div>
-              </div>
-            </button>
-          </li>
+          <CardItem
+            key={c.name}
+            name={c.name}
+            selected={c.name === selectedCategory}
+            transactions={c.transactions.length}
+            sum={c.sum}
+            expensesPercent={c.expensesPercent}
+            onClick={handleCategoryClick}
+          />
         ))}
-      </ul>
+      </Card>
 
       <div ref={parent}>
         <Disclosure>
