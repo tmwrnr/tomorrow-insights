@@ -29,10 +29,7 @@ const Month: React.FC<Props> = ({ month }) => {
 
   const handleCategoryClick = (category: Category) => {
     setSelectedCategory((prev) => (prev !== category ? category : undefined));
-    // TODO Show transactions if hidden
   };
-
-  // TODO remove selectedCategory if transaction are hidden
 
   const filteredTransactions = selectedCategory
     ? month.transactions.filter((t) => t.category === selectedCategory)
