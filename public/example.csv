@@ -1,1 +1,30 @@
 account_type,booking_date,valuta_date,sender_or_recipient,iban,booking_type,description,category,amount,currency,co2_footprint_in_grams
+Hauptkonto,2022-07-01,2022-07-01,Arbeit,,Gutschrift,,Gehalt,500,EUR,
+Hauptkonto,2022-07-01,2022-07-01,,,Kartenzahlung,"REWE",Lebensmittel,"-15,89",EUR,13.634
+Hauptkonto,2022-07-01,2022-07-01,,,Kartenzahlung,"REWE",Lebensmittel,"-18,89",EUR,16.208
+Hauptkonto,2022-07-02,2022-07-02,,,Kartenzahlung,"REWE",Lebensmittel,"-32,94",EUR,28.263
+Hauptkonto,2022-07-02,2022-07-02,,,Kartenzahlung,"denn's Biomarkt",Lebensmittel,"-24,1",EUR,20.678
+Hauptkonto,2022-07-03,2022-07-03,,,Kartenzahlung,"DB Vertrieb GmbH",Transport,-9,EUR,639
+Hauptkonto,2022-07-03,2022-07-03,,,Kartenzahlung,"REWE",Lebensmittel,"-14,08",EUR,12.081
+Hauptkonto,2022-07-04,2022-07-04,,,Kartenzahlung,"Bouldern",Freizeit & Medien,-11,EUR,8.800
+Hauptkonto,2022-07-05,2022-07-05,Zalando Payments GmbH,,Gutschrift,10103417259181,Shopping,"-144,89",EUR,
+Hauptkonto,2022-08-19,2022-07-05,,,Kartenzahlung,"DB Vertrieb GmbH",Transport,-9,EUR,639
+Hauptkonto,2022-07-11,2022-07-11,,,Kartenzahlung,"KINOPOLIS",Freizeit & Medien,"-9,28",EUR,7.424
+Hauptkonto,2022-07-12,2022-07-12,,,Kartenzahlung,"Sushi",Gastronomie,"-51,5",EUR,44.187
+Hauptkonto,2022-07-12,2022-07-12,,,Kartenzahlung,"DER THAI",Gastronomie,"-17,3",EUR,14.843
+Hauptkonto,2022-07-12,2022-07-12,,,Kartenzahlung,"toom BM",Haushalt,"-11,98",EUR,9.584
+Hauptkonto,2022-07-15,2022-07-15,,,Kartenzahlung,"CLASSIC TANKSTELLE",Transport,"-48,48",EUR,87.749
+Hauptkonto,2022-07-21,2022-07-20,,,Kartenzahlung,"Hessol Tankstelle",Transport,"-48,62",EUR,88.002
+Hauptkonto,2022-08-01,2022-08-01,Arbeit,,Gutschrift,,Gehalt,500,EUR,
+Hauptkonto,2022-08-01,2022-08-01,,,Kartenzahlung,"Rewe",Lebensmittel,"-13,3",EUR,11.411
+Hauptkonto,2022-08-01,2022-08-01,,,Kartenzahlung,"Wolt, Berlin",Gastronomie,-19,EUR,16.302
+Hauptkonto,2022-08-08,2022-08-02,,,Kartenzahlung,"REWE",Lebensmittel,"-23,55",EUR,20.206
+Hauptkonto,2022-08-10,2022-08-03,,,Kartenzahlung,"REWE",Lebensmittel,"-73,05",EUR,62.677
+Hauptkonto,2022-08-04,2022-08-04,,,Kartenzahlung,"Parkhaus Betriebs-GmbH",Transport,"-6,5",EUR,0
+Hauptkonto,2022-08-09,2022-08-09,,,Kartenzahlung,"RAMEN",Gastronomie,-19,EUR,16.302
+Hauptkonto,2022-08-12,2022-08-12,,,Kartenzahlung,"CLASSIC TANKSTELLE",Transport,"-43,84",EUR,79.350
+Hauptkonto,2022-08-15,2022-08-15,,,Lastschrift,"Netflix",Freizeit & Medien,"-12,99",EUR,
+Hauptkonto,2022-08-18,2022-08-18,,,Kartenzahlung,"Boulderwelt",Freizeit & Medien,"-9,9",EUR,7.920
+Hauptkonto,2022-08-19,2022-08-19,,,Kartenzahlung,"DB Vertrieb GmbH",Transport,-9,EUR,639
+Hauptkonto,2022-08-23,2022-08-23,,,Kartenzahlung,"Depot",Shopping,"-13,96",EUR,11.168
+Hauptkonto,2022-08-23,2022-08-23,,,Kartenzahlung,"APOTHEKE",Gesundheit & Drogerie,"-31,95",EUR,25.560
