@@ -74,7 +74,7 @@ const Home: NextPage = () => {
         {transactions.length > 0 && <Header />}
         <main className="flex grow flex-col ">
           {months.length > 0 ? (
-            <ul className="container mx-auto mt-10 max-w-4xl space-y-10 px-10 pb-10">
+            <ul className="container mx-auto my-10 max-w-4xl space-y-10 px-10 pb-10">
               {average && (
                 <li>
                   <CardHeadline
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
               ))}
             </ul>
           ) : (
-            <div className=" container mx-auto flex grow flex-col items-center justify-center px-12 py-8 md:py-32">
+            <div className=" container mx-auto flex grow flex-col items-center justify-center px-12 py-8 md:py-32 xl:-mb-20">
               <div className="max-w-md text-center">
                 <h1 className="text-5xl font-bold">Tomorrow Insights</h1>
                 <p className="py-6">
@@ -126,7 +126,7 @@ const Home: NextPage = () => {
             </div>
           )}
         </main>
-        <footer className="lg:-mt-20">
+        <footer className="">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
@@ -166,7 +166,7 @@ const Home: NextPage = () => {
                 <h3 className="mb-1 text-center text-lg font-semibold text-violet-200">
                   Links
                 </h3>
-                <ul className="space flex flex-wrap justify-center space-x-2 text-sm">
+                <ul className="flex flex-col items-center space-y-1 text-sm sm:flex-row sm:flex-wrap sm:justify-center sm:space-y-0 sm:space-x-3">
                   <li>
                     <a
                       href="/example.csv"
@@ -185,6 +185,16 @@ const Home: NextPage = () => {
                       className="hover:text-white hover:underline"
                     >
                       Source Code
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/tmwrnr/tomorrow-insights/issues"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white hover:underline"
+                    >
+                      Feedback
                     </a>
                   </li>
                   <li>
