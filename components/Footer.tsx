@@ -1,8 +1,10 @@
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import React from "react";
 import FooterLink from "./FooterLink";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="">
       <svg
@@ -29,35 +31,36 @@ const Footer = () => {
               className="h-10 w-10 rounded-full"
             />
             <div className="mt-2">
-              Made by{" "}
+              {t("footer.madeBy")}{" "}
               <a
                 href="https://github.com/tmwrnr"
                 target="_blank"
                 rel="noreferrer"
-                className="underline hover:text-white"
+                className="underline hover:text-white focus:outline-violet-50"
               >
                 tmwrnr
               </a>
             </div>
+            <div className="mt-2 text-xs text-violet-200">Open Source</div>
           </div>
           <div className="mt-6">
             <h3 className="mb-1 text-center text-lg font-semibold text-violet-200">
-              Links
+              {t("footer.links")}
             </h3>
             <ul className="flex flex-col items-center space-y-1 text-sm sm:flex-row sm:flex-wrap sm:justify-center sm:space-y-0 sm:space-x-3">
               <li>
-                <FooterLink href="/example.csv" text="Beispiel CSV" />
+                <FooterLink href="/example.csv" text={t("footer.exampleCSV")} />
               </li>
               <li>
                 <FooterLink
                   href="https://github.com/tmwrnr/tomorrow-insights"
-                  text="Source Code"
+                  text="Github"
                 />
               </li>
               <li>
                 <FooterLink
                   href="https://github.com/tmwrnr/tomorrow-insights/issues"
-                  text="Feedback"
+                  text={t("footer.feedback")}
                 />
               </li>
               <li>

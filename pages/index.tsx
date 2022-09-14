@@ -1,10 +1,12 @@
 import type { NextPage } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useCallback, useState } from "react";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import Language from "../components/Language";
 import Month from "../components/Month";
 import MonthAverage from "../components/MonthAverage";
 import {
@@ -68,7 +70,10 @@ const Home: NextPage = () => {
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="600" />
       </Head>
-      <div className="flex min-h-screen flex-col bg-gray-50 text-gray-700">
+      <div className="relative flex min-h-screen flex-col bg-gray-50 text-gray-700">
+        <div className="absolute top-3 right-3 max-w-md md:top-6 md:right-6">
+          <Language />
+        </div>
         {transactions.length > 0 && <Header />}
         <main className="flex grow flex-col ">
           {months.length > 0 ? (
@@ -87,5 +92,13 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "footer"])),
+    },
+  };
+}
 
 export default Home;

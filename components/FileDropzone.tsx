@@ -1,5 +1,6 @@
 import { DocumentChartBarIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
+import { useTranslation } from "next-i18next";
 import React from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -7,6 +8,7 @@ type Props = {
   onDrop: (acceptedFiles: File[]) => void;
 };
 const FileDropzone: React.FC<Props> = ({ onDrop }) => {
+  const { t } = useTranslation();
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "text/csv": [".csv"] },
@@ -20,7 +22,7 @@ const FileDropzone: React.FC<Props> = ({ onDrop }) => {
           "border-violet-400 bg-violet-200": isDragActive,
           "border-violet-400 bg-violet-50": !isDragActive,
         },
-        "flex justify-center rounded-md border-2 border-dashed px-6 pt-10 pb-12"
+        "flex justify-center rounded-md border-2 border-dashed px-6 pt-10 pb-12 focus:outline-violet-500"
       )}
     >
       <input {...getInputProps()} className="sr-only" />
@@ -36,11 +38,11 @@ const FileDropzone: React.FC<Props> = ({ onDrop }) => {
               "text-violet-500": isDragActive,
             })}
           >
-            Datei auswählen
+            {t("dropzone.chooseFile")}
           </span>
-          <span className="pl-1">oder per drag & drop</span>
+          <span className="pl-1">{t("dropzone.dragDrop")}</span>
         </div>
-        <p className="text-xs text-gray-600">nur CSV Dateien</p>
+        <p className="text-xs text-gray-600">{t("dropzone.onlyCSV")}</p>
       </div>
     </div>
   );

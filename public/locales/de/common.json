@@ -1,0 +1,64 @@
+{
+  "average": "Durchschnitt",
+  "transaction_one": "{{count}} Transaktion",
+  "transaction_other": "{{count}} Transaktionen",
+  "showTransactions": "Transaktionen anzeigen",
+  "hideTransactions": "Transaktionen ausblenden",
+  "filterTransactionsWithCategory": "Zeige nur Transaktionen der Kategorie {{category}} an",
+  "sumExpenses": "Summe der Ausgaben",
+  "percentage": "Prozentualer Anteil",
+  "income": "Einnahmen",
+  "expenses": "Ausgaben",
+  "sortBy": "Sortieren nach",
+  "date": "Datum",
+  "amount": "Betrag",
+  "name": "Name",
+  "co2": "CO₂",
+  "language": {
+    "switch": "Sprache ändern",
+    "german": "Deutsch",
+    "english": "Englisch"
+  },
+  "hero": {
+    "headline": "Tomorrow Insights",
+    "description": "Mit diesem Tool kann man sich einfach die Insights seines <0>Tomorrow</0> Kontos anschauen.",
+    "privacyDevice": "Alle Daten bleiben auf dem Gerät!",
+    "privacyServer": "Es werden keine Daten an irgendeinen Server gesendet!"
+  },
+  "dropzone": {
+    "chooseFile": "Datei auswählen",
+    "dragDrop": "oder per drag & drop",
+    "onlyCSV": "nur CSV Dateien"
+  },
+  "footer": {
+    "links": "Links",
+    "exampleCSV": "Beispiel CSV",
+    "feedback": "Feedback",
+    "madeBy": "Erstellt von"
+  },
+  "category": {
+    "Andere": "Andere",
+    "Bargeld": "Bargeld",
+    "Bildung": "Bildung",
+    "Elektronik": "Elektronik",
+    "Familie & Freunde": "Familie & Freunde",
+    "Freizeit & Medien": "Freizeit & Medien",
+    "Gastronomie": "Gastronomie",
+    "Gehalt": "Gehalt",
+    "Geschäftliches": "Geschäftliches",
+    "Gesundheit & Drogerie": "Gesundheit & Drogerie",
+    "Gutschrift": "Gutschrift",
+    "Haushalt": "Haushalt",
+    "Investments": "Investments",
+    "Lastschrift": "Lastschrift",
+    "Lebensmittel": "Lebensmittel",
+    "Reisen": "Reisen",
+    "Shopping": "Shopping",
+    "Sparen": "Sparen",
+    "Spenden": "Spenden",
+    "Steuern": "Steuern",
+    "Transport": "Transport",
+    "Versicherung": "Versicherung",
+    "Überweisung": "Überweisung"
+  }
+}

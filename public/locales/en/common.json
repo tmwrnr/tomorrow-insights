@@ -1,0 +1,64 @@
+{
+  "average": "Average",
+  "transaction_one": "{{count}} transaction",
+  "transaction_other": "{{count}} transactions",
+  "showTransactions": "Show transactions",
+  "hideTransactions": "Hide transactions",
+  "filterTransactionsWithCategory": "Only show transactions with category {{category}}",
+  "sumExpenses": "Sum of expenses",
+  "percentage": "Percentage",
+  "income": "Income",
+  "expenses": "Expenses",
+  "sortBy": "Sort by",
+  "date": "Date",
+  "amount": "Amount",
+  "name": "Name",
+  "co2": "CO₂",
+  "language": {
+    "switch": "Change language",
+    "german": "German",
+    "english": "English"
+  },
+  "hero": {
+    "headline": "Tomorrow Insights",
+    "description": "With this tool, you can easily view the Insights of your <0>Tomorrow</0> account.",
+    "privacyDevice": "All data remains on the device!",
+    "privacyServer": "No data is sent to any server!"
+  },
+  "dropzone": {
+    "chooseFile": "Choose file",
+    "dragDrop": "or drag and drop",
+    "onlyCSV": "only CSV files"
+  },
+  "footer": {
+    "links": "Links",
+    "exampleCSV": "Example CSV",
+    "feedback": "Feedback",
+    "madeBy": "Made by"
+  },
+  "category": {
+    "Andere": "Other",
+    "Bargeld": "Cash",
+    "Bildung": "Education",
+    "Elektronik": "Electronics",
+    "Familie & Freunde": "Family & Friends",
+    "Freizeit & Medien": "Leisure & Media",
+    "Gastronomie": "Gastronomy",
+    "Gehalt": "Salary",
+    "Geschäftliches": "Business",
+    "Gesundheit & Drogerie": "Health & Drugstore",
+    "Gutschrift": "Credit",
+    "Haushalt": "Budget",
+    "Investments": "Investments",
+    "Lastschrift": "Debit",
+    "Lebensmittel": "Food",
+    "Reisen": "Travel",
+    "Shopping": "Shopping",
+    "Sparen": "Saving",
+    "Spenden": "Donate",
+    "Steuern": "Taxes",
+    "Transport": "Transportation",
+    "Versicherung": "Insurance",
+    "Überweisung": "Bank transfer"
+  }
+}

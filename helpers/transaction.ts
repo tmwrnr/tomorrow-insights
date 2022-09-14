@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { i18n } from "next-i18next";
 import { csvToJson } from "../lib/csvToJson";
 import { Month } from "../types/month";
 import { Category, Transaction, TransactionImport } from "../types/transaction";
@@ -123,7 +124,7 @@ export const getAverageMonth = (months: Month[]): Month | undefined => {
     income,
     categories,
     key: "overview",
-    name: "Durchschnitt",
+    name: i18n?.t("average") ?? "Durchschnitt",
     transactions: [],
   };
 };
@@ -167,12 +168,11 @@ function transactionFactory(transaction: TransactionImport): Transaction {
   };
 }
 
-const MonthDateFormatter = new Intl.DateTimeFormat("de-DE", {
-  month: "long",
-  year: "numeric",
-});
 function getMonthName(date: string): string {
-  return MonthDateFormatter.format(new Date(date));
+  return new Intl.DateTimeFormat(i18n?.language, {
+    month: "long",
+    year: "numeric",
+  }).format(new Date(date));
 }
 
 type DateTuple = [year: string, month: string, day: string];

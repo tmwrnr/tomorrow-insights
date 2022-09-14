@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useTranslation } from "next-i18next";
 import React from "react";
 import { Category } from "../types/transaction";
 import { formatEuro, formatPercent } from "../utils/string";
@@ -21,6 +22,7 @@ const CardItem: React.FC<Props> = ({
   sum,
   expensesPercent,
 }) => {
+  const { t } = useTranslation();
   return (
     <li>
       <button
@@ -29,24 +31,24 @@ const CardItem: React.FC<Props> = ({
           { "bg-violet-100": selected }
         )}
         onClick={() => onClick && onClick(name)}
-        aria-label={`Zeige nur Transaktionen der Kategorie ${name} an`}
+        aria-label={t("filterTransactionsWithCategory", { category: name })}
       >
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-50 text-violet-500">
           <CategoryIcon category={name} className="h-6 w-6" />
         </div>
         <div className="grow text-left">
-          <div className="font-semibold">{name}</div>
+          <div className="font-semibold">{t(`category.${name}`)}</div>
           <div className="text-sm text-gray-400">
-            {transactions} Transaktionen
+            {t("transaction", { count: transactions })}
           </div>
         </div>
         <div className="text-right">
           <div className="text-semibold">
-            <span className="sr-only">Summe der Ausgaben</span>
+            <span className="sr-only">{t("sumExpenses")}</span>
             {formatEuro(sum, true)}
           </div>
           <div className="text-sm text-gray-400">
-            <span className="sr-only">Prozentualer Anteil</span>
+            <span className="sr-only">{t("percentage")}</span>
             {formatPercent(expensesPercent, true)}
           </div>
         </div>

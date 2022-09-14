@@ -1,3 +1,4 @@
+import { i18n } from "next-i18next";
 import { round } from "./number";
 
 /**
@@ -41,13 +42,11 @@ export const formatPercent = (percent: number, absolute = false): string => {
   return formatDecimal(rounded) + " %";
 };
 
-const DateFormatter = new Intl.DateTimeFormat("de-DE", {
-  day: "2-digit",
-  month: "long",
-});
-
 export const formatDateString = (date: string): string =>
-  DateFormatter.format(new Date(date));
+  new Intl.DateTimeFormat(i18n?.language, {
+    day: "2-digit",
+    month: "long",
+  }).format(new Date(date));
 
 const MassUnitFormatter = new Intl.NumberFormat("de-DE", {
   maximumFractionDigits: 2,

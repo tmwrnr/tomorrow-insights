@@ -10,7 +10,7 @@ const FooterLink: React.FC<Props> = ({ text, href }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="hover:text-white hover:underline"
+      className="hover:text-white hover:underline focus:outline-violet-50"
     >
       {text}
     </a>
