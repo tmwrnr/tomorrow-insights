@@ -43,8 +43,11 @@ const Home: NextPage = () => {
           property="og:description"
           content="Mit diesem Tool kann man sich einfach die Insights seines Tomorrow Kontos anschauen"
         />
-        {/* TODO replace og:url */}
-        <meta key="og-url" property="og:url" content="" />
+        <meta
+          key="og-url"
+          property="og:url"
+          content="https://tomorrow-insights.vercel.app/"
+        />
         <meta
           key="twitter-title"
           name="twitter:title"
@@ -62,10 +65,22 @@ const Home: NextPage = () => {
         <meta name="author" content="Tim Werner" />
         <meta property="og:locale" content="de_DE" />
         <meta property="og:site_name" content="Tomorrow Insights" />
-        <meta property="og:image" content="/opg.png" />
-        <meta property="og:image:url" content="/opg.png" />
-        <meta property="og:image:secure" content="/opg.png" />
-        <meta property="og:image:secure_url" content="/opg.png" />
+        <meta
+          property="og:image"
+          content="https://raw.githubusercontent.com/tmwrnr/tomorrow-insights/main/public/ogp.png"
+        />
+        <meta
+          property="og:image:url"
+          content="https://raw.githubusercontent.com/tmwrnr/tomorrow-insights/main/public/ogp.png"
+        />
+        <meta
+          property="og:image:secure"
+          content="https://raw.githubusercontent.com/tmwrnr/tomorrow-insights/main/public/ogp.png"
+        />
+        <meta
+          property="og:image:secure_url"
+          content="https://raw.githubusercontent.com/tmwrnr/tomorrow-insights/main/public/ogp.png"
+        />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="600" />
